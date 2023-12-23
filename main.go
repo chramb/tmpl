@@ -7,6 +7,11 @@ import (
 	"text/template"
 )
 
+var (
+	Version string
+	Tags    string
+)
+
 func printErr(e error) {
 	if e != nil {
 		fmt.Fprintf(os.Stderr, "ERROR: %s\n", e)

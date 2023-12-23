@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"os"
 	"strings"
 )
@@ -25,6 +26,7 @@ func (s *stringsFlag) Set(val string) error {
 
 func parseFlags() *config {
 	help := flag.Bool("help", false, "print this help message and exit")
+	version := flag.Bool("version", false, "print version info and exit")
 	output := flag.String("out", "", "path to the output file")
 
 	var templates stringsFlag
@@ -37,6 +39,14 @@ func parseFlags() *config {
 
 	if *help {
 		flag.Usage()
+		os.Exit(0)
+	}
+	if *version {
+		tags, _ := strings.CutSuffix(Tags, " ")
+		if tags != "" {
+			tags += "\n"
+		}
+		fmt.Printf("tmpl: %s\n%s", Version, tags)
 		os.Exit(0)
 	}
 
