@@ -41,6 +41,7 @@ func parseFlags() *config {
 		flag.Usage()
 		os.Exit(0)
 	}
+
 	if *version {
 		tags, _ := strings.CutSuffix(Tags, " ")
 		if tags != "" {
@@ -48,6 +49,16 @@ func parseFlags() *config {
 		}
 		fmt.Printf("tmpl: %s\n%s", Version, tags)
 		os.Exit(0)
+	}
+
+	if len(templates) == 0 {
+		fmt.Fprintf(os.Stderr, "ERROR: missing at least one -in file")
+		os.Exit(-1)
+	}
+
+	if len(data) == 0 {
+		fmt.Fprintf(os.Stderr, "ERROR: missing at least one -data file")
+		os.Exit(-1)
 	}
 
 	return &config{
