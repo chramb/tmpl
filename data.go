@@ -32,7 +32,7 @@ func readData(files stringsFlag) map[string]interface{} {
 			os.Exit(-1)
 		}
 
-		err = reader(f, data)
+		err = reader(f, &data)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "ERROR: Failed to read data from %s\n", p)
 			os.Exit(-1)
