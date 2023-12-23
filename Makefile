@@ -1,7 +1,7 @@
 BIN := tmpl
 GO := go
 TAGS := yaml
-VERSION=$(shell version.sh)
+VERSION := $(shell version.sh)
 
 .PHONY: all clean
 
