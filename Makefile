@@ -13,4 +13,4 @@ $(BIN): $(wildcard *.go)
 	@$(GO) build -ldflags "-X main.Version=$(VERSION)" -tags $(TAGS) -o $(BIN) .
 
 clean:
-	@rm -f tmpl
+	@rm -f $(BIN)
