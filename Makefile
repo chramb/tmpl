@@ -2,8 +2,9 @@ BIN := tmpl
 GO := go
 TAGS := yaml
 VERSION := $(shell version.sh)
+PREFIX := /usr/local/bin
 
-.PHONY: all clean
+.PHONY: all clean install uninstall
 
 all: build
 
@@ -14,3 +15,9 @@ $(BIN): $(wildcard *.go)
 
 clean:
 	@rm -f $(BIN)
+
+install: build
+	@install -m 700 $(BIN) $(PREFIX)/$(BIN)
+
+uninstall:
+	@rm -f $(PREFIX)/$(BIN)
